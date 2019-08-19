@@ -38,6 +38,11 @@ class MainActivity : AppCompatActivity() {
                 text_calc.append(btn.text)
             }
         }
+
+        // Sets listener for "=" buttons, triggering the evaluation
+        // and displaying result on info text view
+        var result = eval(text_calc.text.toString())
+        text_info.text = result.toString()
     }
 
 
