@@ -53,6 +53,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // Saves current state
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        outState.putCharSequence("text_info", text_info.text)
+        outState.putCharSequence("text_calc", text_calc.text)
+    }
+
+    // Restores state
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+
+        text_info.text = savedInstanceState.getCharSequence("text_info")
+        text_calc.setText(savedInstanceState.getCharSequence("text_calc"))
+    }
 
     //Como usar a função:
     // eval("2+2") == 4.0
