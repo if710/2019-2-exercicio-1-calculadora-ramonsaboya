@@ -3,6 +3,7 @@ package br.ufpe.cin.android.calculadora
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -41,8 +42,15 @@ class MainActivity : AppCompatActivity() {
 
         // Sets listener for "=" buttons, triggering the evaluation
         // and displaying result on info text view
-        var result = eval(text_calc.text.toString())
-        text_info.text = result.toString()
+        // Displays toast if evaluation fails
+        btn_Equal.setOnClickListener {
+            try {
+                var result = eval(text_calc.text.toString())
+                text_info.text = result.toString()
+            } catch (exception: Throwable) {
+                Toast.makeText(applicationContext, exception.message, Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
 

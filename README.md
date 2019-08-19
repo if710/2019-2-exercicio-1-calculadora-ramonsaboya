@@ -26,5 +26,5 @@ Para entregar o exercício, responda o [formulário de entrega](https://forms.gl
 | 1 | **sim** |
 | 2 | **sim** |
 | 3 | **sim** |
-| 4 | **não** |
+| 4 | **sim** |
 | 5 | **não** |
