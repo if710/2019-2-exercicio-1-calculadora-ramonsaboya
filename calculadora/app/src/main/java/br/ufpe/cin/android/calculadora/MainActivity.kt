@@ -2,12 +2,42 @@ package br.ufpe.cin.android.calculadora
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // Sets listener for non-actionable buttons, appending text
+        // on input text view
+        var buttons = arrayListOf<Button>(
+            btn_0,
+            btn_1,
+            btn_2,
+            btn_3,
+            btn_4,
+            btn_5,
+            btn_6,
+            btn_7,
+            btn_8,
+            btn_9,
+            btn_Divide,
+            btn_Multiply,
+            btn_Subtract,
+            btn_Add,
+            btn_Dot,
+            btn_LParen,
+            btn_RParen,
+            btn_Power
+        )
+        buttons.forEach { btn ->
+            btn.setOnClickListener {
+                text_calc.append(btn.text)
+            }
+        }
     }
 
 

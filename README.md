@@ -24,7 +24,7 @@ Para entregar o exercício, responda o [formulário de entrega](https://forms.gl
 | Passo | Completou? |
 | ------ | ------ |
 | 1 | **sim** |
-| 2 | **não** |
+| 2 | **sim** |
 | 3 | **não** |
 | 4 | **não** |
 | 5 | **não** |
