@@ -2,14 +2,72 @@ package br.ufpe.cin.android.calculadora
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
+import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // Sets listener for non-actionable buttons, appending text
+        // on input text view
+        var buttons = arrayListOf<Button>(
+            btn_0,
+            btn_1,
+            btn_2,
+            btn_3,
+            btn_4,
+            btn_5,
+            btn_6,
+            btn_7,
+            btn_8,
+            btn_9,
+            btn_Divide,
+            btn_Multiply,
+            btn_Subtract,
+            btn_Add,
+            btn_Dot,
+            btn_LParen,
+            btn_RParen,
+            btn_Power
+        )
+        buttons.forEach { btn ->
+            btn.setOnClickListener {
+                text_calc.append(btn.text)
+            }
+        }
+
+        // Sets listener for "=" buttons, triggering the evaluation
+        // and displaying result on info text view
+        // Displays toast if evaluation fails
+        btn_Equal.setOnClickListener {
+            try {
+                var result = eval(text_calc.text.toString())
+                text_info.text = result.toString()
+            } catch (exception: Throwable) {
+                Toast.makeText(applicationContext, exception.message, Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
+    // Saves current state
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        outState.putCharSequence("text_info", text_info.text)
+        outState.putCharSequence("text_calc", text_calc.text)
+    }
+
+    // Restores state
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+
+        text_info.text = savedInstanceState.getCharSequence("text_info")
+        text_calc.setText(savedInstanceState.getCharSequence("text_calc"))
+    }
 
     //Como usar a função:
     // eval("2+2") == 4.0
